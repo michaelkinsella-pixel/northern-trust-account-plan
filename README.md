@@ -24,6 +24,8 @@ Redis is resolved in this order (see [`lib/redis.ts`](lib/redis.ts)):
 
 5. **Admin** — Open **`/admin`**, sign in with `ADMIN_PASSWORD`, then you are redirected to **`/api/admin-ui`** (HTML table of sessions and per-section dwell time).
 
+6. **Health check** — After deploy, **`GET /api/health`** returns `{"ok":true}` when functions are routing correctly.
+
 Optional: set `DISABLE_SITE_AUTH=1` **only** for temporary debugging (disables the visitor gate; **do not** use in production).
 
 ### Linking from your machine (optional)
