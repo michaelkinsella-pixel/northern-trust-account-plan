@@ -1,5 +1,5 @@
 import { Redis as UpstashRedis } from "@upstash/redis";
-import Redis from "ioredis";
+import IoRedis from "ioredis";
 
 declare const process: { env: Record<string, string | undefined> };
 
@@ -55,7 +55,7 @@ function resolveTcpUrl(): string | null {
   return `${scheme}://${encodeURIComponent(username)}:${encodeURIComponent(password)}@${host}:${port}`;
 }
 
-function makeIoWrapper(io: Redis): AppRedis {
+function makeIoWrapper(io: InstanceType<typeof IoRedis>): AppRedis {
   return {
     get: (key) => io.get(key),
     async set(key, value, ttlSeconds) {
@@ -113,7 +113,7 @@ export function getRedis(): AppRedis | null {
   const tcpUrl = resolveTcpUrl();
   if (tcpUrl) {
     try {
-      const io = new Redis(tcpUrl, {
+      const io = new IoRedis(tcpUrl, {
         maxRetriesPerRequest: 2,
         connectTimeout: 15000,
         enableOfflineQueue: false,
