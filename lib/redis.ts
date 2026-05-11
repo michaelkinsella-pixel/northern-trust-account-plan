@@ -24,9 +24,14 @@ function urlFromHostPort(hostPort: string): string | null {
 }
 
 function resolveTcpUrl(): string | null {
-  /** Use when Vercel locks `REDIS_URL` (Storage integration). */
-  const manual = process.env.REDIS_CONNECTION_STRING?.trim();
-  const raw = (manual || process.env.REDIS_URL?.trim()) ?? "";
+  /**
+   * Prefer the Vercel-injected `REDIS_URL` (matches the database's actual scheme).
+   * `REDIS_CONNECTION_STRING` is only a manual override when REDIS_URL is locked
+   * or you need to force a different scheme.
+   */
+  const primary = process.env.REDIS_URL?.trim();
+  const override = process.env.REDIS_CONNECTION_STRING?.trim();
+  const raw = (primary || override) ?? "";
 
   if (raw) {
     if (raw.startsWith("https://")) {
