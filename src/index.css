@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "./**/*.{js,ts,jsx,tsx}";
+
+/* Northern Trust brand green (Pantone 343 C / widely cited #115740) + homepage-inspired hero tones */
+@theme {
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --color-ntr-green: #115740;
+  --color-ntr-green-dark: #0a3d2e;
+  --color-ntr-hero: #115740;
+  --color-ntr-hero-deep: #0c3024;
+  --color-ntr-green-soft: #e3efe9;
+  --color-ntr-green-muted: #c5ddd0;
+  --color-ntr-ink: #1c1917;
+  --color-ntr-muted: #57534e;
+  --color-ntr-canvas: #fafaf9;
+  --color-ntr-line: #e7e5e4;
+  /* Optional subtle highlight on green backgrounds */
+  --color-ntr-on-green-muted: #d8ebe2;
+  /* “Why Cursor helps” callout panel on white cards */
+  --color-ntr-callout-bg: #e8f4fc;
+  --color-ntr-callout-border: #bfdbfe;
+  --color-ntr-callout-heading: #1d4ed8;
+  --color-ntr-callout-text: #334155;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Improves readability site-wide (scales rem-based Tailwind type) */
+    font-size: 18px;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-ntr-canvas);
+    color: var(--color-ntr-ink);
+    line-height: 1.55;
+  }
+}
