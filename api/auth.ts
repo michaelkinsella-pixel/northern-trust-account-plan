@@ -67,7 +67,7 @@ async function handler(request: Request): Promise<Response> {
     sections: {},
   };
 
-  const writeMs = 8000;
+  const writeMs = 14000;
   try {
     await Promise.race([
       redis.set(sessionKey(sid), JSON.stringify(record), TTL_SEC),

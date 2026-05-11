@@ -113,10 +113,24 @@ export function getRedis(): AppRedis | null {
   const tcpUrl = resolveTcpUrl();
   if (tcpUrl) {
     try {
+      const isTls = /^rediss:\/\//i.test(tcpUrl);
+      let servername: string | undefined;
+      if (isTls) {
+        try {
+          servername = new URL(tcpUrl).hostname || undefined;
+        } catch {
+          servername = undefined;
+        }
+      }
       const io = new IoRedis(tcpUrl, {
-        maxRetriesPerRequest: 2,
         connectTimeout: 15000,
-        enableOfflineQueue: false,
+        maxRetriesPerRequest: null,
+        enableOfflineQueue: true,
+        lazyConnect: false,
+        tls: isTls ? { servername } : undefined,
+      });
+      io.on("error", () => {
+        /* swallow noisy reconnect errors; handlers surface their own messages */
       });
       g.__ntrRedisClient = makeIoWrapper(io);
       return g.__ntrRedisClient;
