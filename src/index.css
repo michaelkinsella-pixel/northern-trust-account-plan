@@ -28,14 +28,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Improves readability site-wide (scales rem-based Tailwind type) */
-    font-size: 18px;
+    font-size: 16px;
   }
   body {
     margin: 0;
     font-family: var(--font-sans);
     background-color: var(--color-ntr-canvas);
     color: var(--color-ntr-ink);
-    line-height: 1.55;
+    line-height: 1.5;
   }
 }

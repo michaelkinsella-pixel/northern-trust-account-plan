@@ -162,21 +162,21 @@ function SectionHeading({
   dark?: boolean;
 }) {
   return (
-    <header id={id} className="mb-10 scroll-mt-32">
+    <header id={id} className="mb-6 scroll-mt-28 md:mb-8">
       <p
-        className={`text-xs font-semibold uppercase tracking-[0.18em] md:text-sm ${dark ? "text-white/80" : "text-ntr-green"}`}
+        className={`text-xs font-semibold uppercase tracking-[0.22em] ${dark ? "text-white/85" : "text-ntr-green"}`}
       >
         {eyebrow}
       </p>
       <h2
-        className={`mt-3 border-l-4 pl-5 text-3xl font-semibold tracking-tight md:text-4xl ${
+        className={`mt-2 border-l-4 pl-4 text-2xl font-semibold leading-[1.15] tracking-tight md:text-3xl ${
           dark ? "border-white text-white" : "border-ntr-green text-ntr-ink"
         }`}
       >
         {title}
       </h2>
       {description ? (
-        <p className={`mt-4 max-w-3xl text-lg leading-relaxed md:text-xl ${dark ? "text-white/88" : "text-ntr-muted"}`}>
+        <p className={`mt-3 max-w-3xl text-base leading-relaxed md:text-lg ${dark ? "text-white/85" : "text-ntr-muted"}`}>
           {description}
         </p>
       ) : null}
@@ -243,21 +243,20 @@ export default function App() {
 
       {/* Top bar — Northern Trust green + white */}
       <header className="sticky top-0 z-40 border-b border-white/15 bg-ntr-green text-white shadow-md shadow-ntr-green-dark/40">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 md:px-6">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/90 md:text-sm">Northern Trust</span>
-            <span className="text-base font-semibold text-white md:text-lg">Account Plan · Northern Trust</span>
-            <span className="text-sm text-white/65 md:text-base">Confidential — prepared for Northern Trust</span>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-2.5 md:px-6 md:py-3">
+          <div className="flex min-w-0 flex-1 flex-col leading-tight">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 md:text-xs">Northern Trust</span>
+            <span className="text-sm font-semibold text-white md:text-base">Account Plan · Northern Trust</span>
           </div>
           <nav
             aria-label="Page sections"
-            className="order-last flex w-full gap-1 overflow-x-auto pb-1 lg:order-none lg:w-auto lg:max-w-none lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0"
+            className="order-last flex w-full gap-0.5 overflow-x-auto lg:order-none lg:w-auto lg:max-w-none lg:flex-1 lg:justify-center lg:overflow-visible"
           >
             {navItems.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
-                className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white md:text-base"
+                className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-xs font-medium text-white/80 hover:bg-white/10 hover:text-white md:text-sm"
               >
                 {n.label}
               </a>
@@ -266,7 +265,7 @@ export default function App() {
           <div className="flex shrink-0 items-center">
             <a
               href="#ask"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-ntr-green shadow-md transition hover:bg-ntr-green-soft md:text-base"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-ntr-green shadow-md transition hover:bg-ntr-green-soft md:text-sm"
             >
               Start the trial conversation <span aria-hidden>→</span>
             </a>
@@ -280,63 +279,63 @@ export default function App() {
         className="relative bg-linear-to-b from-ntr-green from-65% to-ntr-hero-deep text-white"
       >
         <HeroWatermark />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-ntr-hero-deep/90 to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
-          <ConfidentialBadge className="mb-8" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-ntr-hero-deep/90 to-transparent" />
+        <div className="relative mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
+          <ConfidentialBadge className="mb-4" />
 
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/75 md:text-sm">Account plan</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/80">Account plan</p>
 
-          <h1 className="mt-6 max-w-5xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl lg:text-[4.25rem]">
+          <h1 className="mt-3 max-w-5xl text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
             <span className="block">Northern Trust</span>
-            <span className="mt-1 flex flex-wrap items-center gap-3 md:gap-4">
+            <span className="mt-1 flex flex-wrap items-baseline gap-3 md:gap-4">
               <span className="text-ntr-on-green-muted">×</span>
               <span>Cursor</span>
             </span>
           </h1>
 
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-white/92 md:text-xl md:leading-relaxed">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/92 md:text-lg">
             A focused account plan for what an enterprise Cursor deployment looks like at Northern Trust: where it fits alongside
             NT Byron and Microsoft-stack tooling, what we trial in 30–45 days, and the operating model for scaling Cursor across
             engineering without weakening the controls a global custodian bank requires.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#initiatives"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-ntr-green shadow-lg hover:bg-ntr-green-soft md:text-lg"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-ntr-green shadow-lg shadow-ntr-green-dark/30 transition hover:bg-ntr-green-soft"
             >
               See the initiatives <span aria-hidden>→</span>
             </a>
             <a
               href="#roadmap"
-              className="inline-flex items-center rounded-full border-2 border-white/50 bg-transparent px-7 py-4 text-base font-semibold text-white hover:bg-white/10 md:text-lg"
+              className="inline-flex items-center rounded-full border-2 border-white/50 bg-transparent px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
             >
               12-month roadmap
             </a>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {heroStats.map((s) => (
               <div
                 key={s.label}
-                className={`rounded-2xl border px-6 py-7 shadow-lg ${
+                className={`rounded-xl border px-5 py-4 shadow-md ${
                   s.emphasis
-                    ? "border-white/55 bg-white/12 ring-2 ring-white/35"
-                    : "border-white/20 bg-white/[0.07]"
+                    ? "border-amber-200/60 bg-amber-200/[0.08] ring-1 ring-amber-200/40"
+                    : "border-white/20 bg-white/[0.06]"
                 }`}
               >
-                <p className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{s.value}</p>
-                <p className="mt-3 text-sm font-medium uppercase leading-snug tracking-wide text-white/75 md:text-base">{s.label}</p>
+                <p className="text-2xl font-semibold tracking-tight text-white md:text-3xl">{s.value}</p>
+                <p className="mt-1.5 text-xs font-semibold uppercase leading-snug tracking-wide text-white/75 md:text-sm">{s.label}</p>
               </div>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm text-white/55 md:text-base">
+          <p className="mt-3 max-w-3xl text-xs text-white/55 md:text-sm">
             Benchmark tiles are directional—your pilot defines baselines, targets, and guardrails with engineering and risk.
           </p>
         </div>
       </section>
 
-      <main id="main" className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <main id="main" className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
         {/* Snapshot — high-contrast cards */}
         <section id="glance" data-analytics-section="glance" className="scroll-mt-32">
           <SectionHeading
@@ -344,57 +343,57 @@ export default function App() {
             title="Northern Trust at a glance"
             description="Strategic context for where AI meets software delivery—grounded in public disclosures and hiring signals, not internally confirmed facts."
           />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {atAGlanceNarratives.map((card) => (
               <article
                 key={card.title}
-                className="rounded-2xl border border-ntr-green-dark/20 bg-linear-to-br from-ntr-green from-10% to-ntr-green-dark p-8 text-white shadow-xl md:p-10"
+                className="rounded-2xl border border-ntr-green-dark/20 bg-linear-to-br from-ntr-green from-10% to-ntr-green-dark p-6 text-white shadow-lg shadow-ntr-green-dark/20 md:p-7"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ntr-on-green-muted md:text-sm">{card.overline}</p>
-                <h3 className="mt-4 text-2xl font-semibold leading-snug md:text-3xl">{card.title}</h3>
-                <p className="mt-5 text-base leading-relaxed text-white/88 md:text-lg">{card.body}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ntr-on-green-muted">{card.overline}</p>
+                <h3 className="mt-2 text-xl font-semibold leading-snug md:text-2xl">{card.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/88 md:text-base">{card.body}</p>
               </article>
             ))}
           </div>
 
-          <div className="mt-14">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-xs font-bold uppercase tracking-wide text-amber-900 ring-1 ring-amber-200/80 md:text-sm">
+          <div className="mt-10">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-amber-900 ring-1 ring-amber-200/80">
               <span aria-hidden>✨</span> Where Cursor adds value
             </p>
-            <h3 className="mb-8 text-2xl font-semibold tracking-tight text-ntr-ink md:text-3xl">
+            <h3 className="mb-5 text-xl font-semibold tracking-tight text-ntr-ink md:text-2xl">
               Northern Trust AI investments — how Cursor helps
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {ntAiInvestments.map((row, i) => (
                 <article
                   key={row.label}
                   className="overflow-hidden rounded-2xl border border-ntr-line bg-white shadow-sm ring-1 ring-black/[0.03]"
                 >
                   <div className="flex flex-col lg:flex-row">
-                    <div className="flex flex-1 gap-5 p-6 md:gap-6 md:p-8 lg:flex-[1.15]">
-                      <div className="flex shrink-0 gap-3 md:gap-4">
+                    <div className="flex flex-1 gap-4 p-5 md:p-6 lg:flex-[1.15]">
+                      <div className="flex shrink-0 gap-2.5">
                         <div
-                          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ntr-green text-sm font-bold text-white md:h-14 md:w-14 md:text-base"
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ntr-green text-xs font-bold text-white md:h-12 md:w-12 md:text-sm"
                           aria-hidden
                         >
                           {String(i + 1).padStart(2, "0")}
                         </div>
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ntr-green-soft ring-1 ring-ntr-green-muted/60 md:h-14 md:w-14">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ntr-green-soft ring-1 ring-ntr-green-muted/60 md:h-12 md:w-12">
                           <NtInvestmentIcon name={row.icon} />
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="text-xl font-semibold text-ntr-ink md:text-2xl">
+                        <h4 className="text-lg font-semibold text-ntr-ink md:text-xl">
                           {i + 1}. {row.label}
                         </h4>
-                        <p className="mt-3 text-base leading-relaxed text-ntr-muted md:text-lg">{row.detail}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-ntr-muted md:text-base">{row.detail}</p>
                       </div>
                     </div>
-                    <div className="border-t border-ntr-line bg-ntr-callout-bg p-6 md:p-8 lg:w-[min(100%,26rem)] lg:shrink-0 lg:border-l lg:border-t-0 lg:border-ntr-callout-border">
-                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-ntr-callout-heading md:text-sm">
+                    <div className="border-t border-ntr-line bg-ntr-callout-bg p-5 md:p-6 lg:w-[min(100%,24rem)] lg:shrink-0 lg:border-l lg:border-t-0 lg:border-ntr-callout-border">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-ntr-callout-heading">
                         Why Cursor lands at Northern Trust
                       </p>
-                      <p className="mt-4 text-base leading-relaxed text-ntr-callout-text md:text-lg">{row.cursorHelps}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-ntr-callout-text md:text-base">{row.cursorHelps}</p>
                     </div>
                   </div>
                 </article>
@@ -403,125 +402,129 @@ export default function App() {
           </div>
         </section>
 
-        <section id="initiatives" data-analytics-section="initiatives" className="mt-24 scroll-mt-32 md:mt-28">
+        <section id="initiatives" data-analytics-section="initiatives" className="mt-14 scroll-mt-28 md:mt-16">
           <SectionHeading
             eyebrow="Initiatives"
             title="Where Cursor maps to your technology agenda"
             description="Hypothesis-led themes from public signals—use them to steer the conversation, then replace with your confirmed priorities."
           />
-          <div className="flex flex-col gap-12 lg:flex-row lg:items-start">
-            <div className="lg:w-[22rem] lg:shrink-0">
-              <nav aria-label="Initiatives" className="space-y-3 lg:sticky lg:top-36">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+            <div className="lg:w-[20rem] lg:shrink-0">
+              <nav aria-label="Initiatives" className="space-y-2 lg:sticky lg:top-28">
                 {initiatives.map((b) => (
                   <button
                     key={b.id}
                     type="button"
                     onClick={() => setActiveId(b.id)}
-                    className={`w-full rounded-xl border-l-4 py-4 pl-5 pr-4 text-left transition-colors ${
+                    className={`w-full rounded-lg border-l-4 py-3 pl-4 pr-3 text-left transition-colors ${
                       activeId === b.id
                         ? "border-ntr-green bg-white shadow-md ring-1 ring-ntr-line"
-                        : "border-transparent bg-white/80 hover:bg-white hover:shadow-sm"
+                        : "border-transparent bg-white/70 hover:bg-white hover:shadow-sm"
                     }`}
                   >
-                    <span className="block text-base font-semibold text-ntr-ink md:text-lg">{b.title}</span>
-                    <span className="mt-2 block text-sm leading-snug text-ntr-muted md:text-base">{b.subtitle}</span>
+                    <span className="block text-sm font-semibold text-ntr-ink md:text-base">{b.title}</span>
+                    <span className="mt-1 block text-xs leading-snug text-ntr-muted md:text-sm">{b.subtitle}</span>
                   </button>
                 ))}
               </nav>
             </div>
-            <article className="min-w-0 flex-1 rounded-2xl border border-ntr-line bg-white p-8 shadow-sm md:p-10">
-              <h3 className="text-2xl font-semibold text-ntr-ink md:text-3xl">{active.title}</h3>
-              <p className="mt-2 text-base text-ntr-muted md:text-lg">{active.subtitle}</p>
+            <article className="min-w-0 flex-1 rounded-2xl border border-ntr-line bg-white p-6 shadow-sm md:p-8">
+              <h3 className="text-xl font-semibold text-ntr-ink md:text-2xl">{active.title}</h3>
+              <p className="mt-1 text-sm text-ntr-muted md:text-base">{active.subtitle}</p>
 
-              <div className="mt-10 space-y-10">
+              <div className="mt-6 space-y-6">
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Hypothesis</h4>
-                  <p className="mt-3 text-base leading-relaxed text-stone-800 md:text-lg">{active.hypothesis}</p>
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Hypothesis</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-800 md:text-base">{active.hypothesis}</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Business drivers</h4>
-                  <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Business drivers</h4>
+                  <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                     {active.observedSignals.map((s) => (
                       <li key={s}>{s}</li>
                     ))}
                   </ul>
                 </div>
-                <div className="border-t border-ntr-line pt-10">
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">How Cursor helps</h4>
-                  <p className="mt-3 text-base font-semibold text-ntr-ink md:text-lg">{active.cursorHeadline}</p>
-                  <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                <div className="border-t border-ntr-line pt-6">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">How Cursor helps</h4>
+                  <p className="mt-2 text-sm font-semibold text-ntr-ink md:text-base">{active.cursorHeadline}</p>
+                  <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                     {active.cursorBullets.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Discovery questions</h4>
-                  <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Discovery questions</h4>
+                  <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                     {active.discoveryQuestions.map((q) => (
                       <li key={q}>{q}</li>
                     ))}
                   </ul>
                 </div>
-                <p className="border-t border-ntr-line pt-8 text-sm leading-relaxed text-stone-500 md:text-base">{active.proof}</p>
+                <p className="border-t border-ntr-line pt-5 text-xs leading-relaxed text-stone-500 md:text-sm">{active.proof}</p>
               </div>
             </article>
           </div>
         </section>
 
-        <section id="pillars" data-analytics-section="pillars" className="mt-24 scroll-mt-32 md:mt-28">
+        <section id="pillars" data-analytics-section="pillars" className="mt-14 scroll-mt-28 md:mt-16">
           <SectionHeading
             eyebrow="Product"
             title="Cursor capabilities on day one"
             description="One platform—distinct surfaces for completion, agentic execution, review automation, and enterprise controls."
           />
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {cursorPillars.map((p) => (
-              <article key={p.name} className="rounded-xl border border-ntr-line bg-white p-8 shadow-sm md:p-9">
-                <h3 className="text-xl font-semibold text-ntr-green md:text-2xl">{p.name}</h3>
-                <p className="mt-2 text-base font-semibold text-ntr-ink md:text-lg">{p.tagline}</p>
-                <p className="mt-4 text-base leading-relaxed text-ntr-muted md:text-lg">{p.description}</p>
+              <article
+                key={p.name}
+                className="group relative rounded-xl border border-ntr-line bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:p-7"
+              >
+                <span className="absolute left-0 top-6 h-8 w-1 rounded-r bg-ntr-green md:top-7" aria-hidden />
+                <h3 className="pl-3 text-lg font-semibold text-ntr-green md:text-xl">{p.name}</h3>
+                <p className="mt-1.5 pl-3 text-sm font-semibold text-ntr-ink md:text-base">{p.tagline}</p>
+                <p className="mt-2.5 pl-3 text-sm leading-relaxed text-ntr-muted md:text-base">{p.description}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="roadmap" data-analytics-section="roadmap" className="mt-24 scroll-mt-32 md:mt-28">
+        <section id="roadmap" data-analytics-section="roadmap" className="mt-14 scroll-mt-28 md:mt-16">
           <SectionHeading
             eyebrow="Motion"
             title="Discover → Pilot → Scale → Operate"
             description="From first workshop to Cursor as a sanctioned default for eligible engineering populations—structured around Cursor's enterprise playbook, tailored to Northern Trust."
           />
-          <div className="space-y-10">
+          <div className="space-y-5">
             {roadmap.map((p) => (
               <article key={p.phase} className="overflow-hidden rounded-2xl border border-ntr-line bg-white shadow-sm">
-                <div className="border-b border-ntr-line bg-ntr-green-soft px-6 py-5 md:px-8">
+                <div className="border-b border-ntr-line bg-ntr-green-soft px-5 py-3.5 md:px-7">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
-                    <h3 className="text-xl font-semibold text-ntr-green md:text-2xl">{p.phase}</h3>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-ntr-muted md:text-base">{p.timing}</p>
+                    <h3 className="text-lg font-semibold text-ntr-green md:text-xl">{p.phase}</h3>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-ntr-muted md:text-sm">{p.timing}</p>
                   </div>
                 </div>
-                <div className="space-y-8 px-6 py-8 md:px-8">
+                <div className="space-y-5 px-5 py-5 md:px-7 md:py-6">
                   <div>
-                    <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Goals</h4>
-                    <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                    <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Goals</h4>
+                    <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                       {p.goals.map((g) => (
                         <li key={g}>{g}</li>
                       ))}
                     </ul>
                   </div>
-                  <div className="grid gap-8 border-t border-ntr-line pt-8 md:grid-cols-2">
+                  <div className="grid gap-5 border-t border-ntr-line pt-5 md:grid-cols-2">
                     <div>
-                      <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Northern Trust</h4>
-                      <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Northern Trust</h4>
+                      <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                         {p.northernTrust.map((x) => (
                           <li key={x}>{x}</li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold uppercase tracking-wide text-ntr-green md:text-base">Cursor</h4>
-                      <ul className="mt-3 list-inside list-disc space-y-2 text-base text-ntr-muted md:text-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-ntr-green md:text-sm">Cursor</h4>
+                      <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-ntr-muted md:text-base">
                         {p.cursor.map((x) => (
                           <li key={x}>{x}</li>
                         ))}
@@ -534,7 +537,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="kpis" data-analytics-section="kpis" className="mt-24 scroll-mt-32 md:mt-28">
+        <section id="kpis" data-analytics-section="kpis" className="mt-14 scroll-mt-28 md:mt-16">
           <SectionHeading
             eyebrow="Measurement"
             title="Success metrics — measured in the pilot"
@@ -547,33 +550,33 @@ export default function App() {
           />
         </section>
 
-        <section id="team" data-analytics-section="team" className="mt-24 scroll-mt-32 md:mt-28">
+        <section id="team" data-analytics-section="team" className="mt-14 scroll-mt-28 md:mt-16">
           <SectionHeading
             eyebrow="People"
             title="Working team across the trial"
             description="Northern Trust names reflect public leadership listings—confirm owners and delegates in your organization."
           />
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {(["Northern Trust", "Cursor"] as const).map((org) => (
               <div key={org} className="overflow-hidden rounded-2xl border border-ntr-line bg-white shadow-sm">
-                <div className="border-b border-ntr-line bg-ntr-green px-6 py-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white md:text-base">{org}</h3>
+                <div className="border-b border-ntr-line bg-ntr-green px-5 py-3">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white md:text-sm">{org}</h3>
                 </div>
                 <ul className="divide-y divide-ntr-line">
                   {stakeholders
                     .filter((s) => s.org === org)
                     .map((s) => (
-                      <li key={s.name} className="flex gap-5 px-6 py-5">
+                      <li key={s.name} className="flex gap-4 px-5 py-4">
                         <span
-                          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ntr-green-soft text-sm font-bold text-ntr-green md:text-base"
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ntr-green-soft text-xs font-bold text-ntr-green md:text-sm"
                           aria-hidden
                         >
                           {initials(s.name)}
                         </span>
                         <div>
-                          <p className="text-lg font-semibold text-ntr-ink">{s.name}</p>
-                          <p className="mt-1 text-base text-ntr-muted">{s.role}</p>
-                          <p className="mt-2 text-sm text-stone-500 md:text-base">{s.focus}</p>
+                          <p className="text-base font-semibold text-ntr-ink">{s.name}</p>
+                          <p className="mt-0.5 text-sm text-ntr-muted">{s.role}</p>
+                          <p className="mt-1 text-xs text-stone-500 md:text-sm">{s.focus}</p>
                         </div>
                       </li>
                     ))}
@@ -583,49 +586,49 @@ export default function App() {
           </div>
         </section>
 
-        <section id="ask" data-analytics-section="ask" className="mt-24 scroll-mt-32 md:mt-28">
-          <div className="overflow-hidden rounded-3xl bg-linear-to-br from-ntr-green from-40% to-ntr-hero-deep p-8 text-white shadow-2xl shadow-ntr-green-dark/30 md:p-12 lg:p-14">
-            <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-14">
+        <section id="ask" data-analytics-section="ask" className="mt-14 scroll-mt-28 md:mt-16">
+          <div className="overflow-hidden rounded-3xl bg-linear-to-br from-ntr-green from-40% to-ntr-hero-deep p-6 text-white shadow-2xl shadow-ntr-green-dark/30 md:p-9 lg:p-11">
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
               <div className="lg:col-span-7">
-                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95 md:text-sm">Next step</p>
-                <h2 className="mt-4 text-3xl font-semibold leading-[1.15] tracking-tight md:text-4xl lg:text-[2.65rem]">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95">Next step</p>
+                <h2 className="mt-2 text-2xl font-semibold leading-[1.15] tracking-tight md:text-3xl lg:text-4xl">
                   {theAskHeading}
                 </h2>
-                <p className="mt-6 text-lg leading-relaxed text-white/90 md:text-xl">{theAskIntro}</p>
-                <ul className="mt-10 space-y-5">
+                <p className="mt-4 text-base leading-relaxed text-white/90 md:text-lg">{theAskIntro}</p>
+                <ul className="mt-6 space-y-3">
                   {theAskChecklist.map((line) => (
-                    <li key={line} className="flex gap-4">
+                    <li key={line} className="flex gap-3">
                       <AskCheckIcon />
-                      <span className="text-base leading-relaxed text-white/92 md:text-lg">{line}</span>
+                      <span className="text-sm leading-relaxed text-white/92 md:text-base">{line}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div className="lg:col-span-5">
-                <div className="flex h-full flex-col rounded-2xl border border-white/20 bg-ntr-green-dark/50 p-6 shadow-inner backdrop-blur-sm md:p-8">
-                  <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95 md:text-sm">Next step</p>
-                  <p className="mt-4 text-xl font-semibold leading-snug md:text-2xl">{theAskNextStep.headline}</p>
-                  <p className="mt-4 text-base leading-relaxed text-white/82 md:text-lg">{theAskNextStep.description}</p>
+                <div className="flex h-full flex-col rounded-2xl border border-white/20 bg-ntr-green-dark/55 p-5 shadow-inner backdrop-blur-sm md:p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95">Next step</p>
+                  <p className="mt-2 text-lg font-semibold leading-snug md:text-xl">{theAskNextStep.headline}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/82 md:text-base">{theAskNextStep.description}</p>
 
-                  <div className="mt-8 rounded-xl border border-white/15 bg-black/15 p-5 md:p-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95 md:text-sm">{theAskAccountTeamLabel}</p>
-                    <ul className="mt-5 space-y-5">
+                  <div className="mt-5 rounded-xl border border-white/15 bg-black/15 p-4 md:p-5">
+                    <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200/95">{theAskAccountTeamLabel}</p>
+                    <ul className="mt-3 space-y-3">
                       {theAskAccountTeamRows.map((row) => (
-                        <li key={`${row.name}-${row.title}`} className="border-b border-white/10 pb-5 last:border-0 last:pb-0">
-                          <p className="text-lg font-semibold text-white md:text-xl">{row.name}</p>
-                          <p className="mt-1 text-sm text-white/75 md:text-base">{row.title}</p>
-                          {row.note ? <p className="mt-1 text-sm text-white/55">{row.note}</p> : null}
+                        <li key={`${row.name}-${row.title}`} className="border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                          <p className="text-base font-semibold text-white md:text-lg">{row.name}</p>
+                          <p className="mt-0.5 text-xs text-white/75 md:text-sm">{row.title}</p>
+                          {row.note ? <p className="mt-0.5 text-xs text-white/55">{row.note}</p> : null}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="mt-8">
+                  <div className="mt-5">
                     {theAskCta.tel ? (
                       <a
                         href={theAskCta.tel}
-                        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-amber-300 px-6 py-4 text-base font-bold text-ntr-green shadow-lg transition hover:bg-amber-200 md:text-lg"
+                        className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-amber-300 px-5 py-3 text-base font-bold text-ntr-green shadow-lg transition hover:bg-amber-200"
                       >
                         <PhoneHandsetIcon className="h-5 w-5" />
                         {theAskCta.label}
@@ -637,12 +640,12 @@ export default function App() {
                       </a>
                     ) : (
                       <div>
-                        <p className="inline-flex w-full flex-col items-center justify-center gap-2 rounded-full border border-amber-200/40 bg-amber-300 px-6 py-4 text-center text-base font-bold text-ntr-green shadow-lg md:text-lg">
+                        <p className="inline-flex w-full flex-col items-center justify-center gap-1.5 rounded-full border border-amber-200/40 bg-amber-300 px-5 py-3 text-center text-base font-bold text-ntr-green shadow-lg">
                           <span className="inline-flex items-center gap-2">
                             <PhoneHandsetIcon className="h-5 w-5" />
                             {theAskCta.label}
                           </span>
-                          <span className="max-w-xs text-xs font-normal leading-snug text-ntr-green/80">
+                          <span className="max-w-xs text-[11px] font-normal leading-snug text-ntr-green/80">
                             Direct dial shared on your meeting invite or through your Cursor coordinator.
                           </span>
                         </p>
@@ -656,14 +659,14 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="border-t border-ntr-line bg-ntr-green py-12 text-white">
+      <footer className="border-t border-ntr-line bg-ntr-green py-8 text-white">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <p className="text-base leading-relaxed text-white/85 md:text-lg">
+          <p className="text-sm leading-relaxed text-white/85 md:text-base">
             Confidential — prepared for Northern Trust. Hypotheses reflect public sources as of the research date; confirm internally
             before external use. Cursor enterprise features should be validated against current documentation and procurement needs.
           </p>
-          <p className="mt-8 text-sm font-semibold uppercase tracking-wide text-ntr-green-soft md:text-base">Sources</p>
-          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-base md:text-lg">
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-ntr-green-soft md:text-sm">Sources</p>
+          <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm md:text-base">
             {sources.map((s) => (
               <li key={s.href}>
                 <a href={s.href} className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white" target="_blank" rel="noreferrer">
@@ -672,7 +675,7 @@ export default function App() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-sm text-white/70 md:text-base">
+          <p className="mt-5 text-center text-xs text-white/70 md:text-sm">
             <a href="/api/logout" className="underline decoration-white/40 underline-offset-4 hover:decoration-white">
               Sign out (visitor)
             </a>
@@ -681,7 +684,7 @@ export default function App() {
               Analytics admin
             </a>
           </p>
-          <p className="mt-6 text-center text-xs uppercase tracking-[0.25em] text-white/55 md:text-sm">Cursor</p>
+          <p className="mt-3 text-center text-xs uppercase tracking-[0.25em] text-white/55">Cursor</p>
         </div>
       </footer>
     </div>
