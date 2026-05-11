@@ -1,5 +1,5 @@
 import { Redis as UpstashRedis } from "@upstash/redis";
-import IoRedis from "ioredis";
+import { Redis as IoRedis } from "ioredis";
 
 declare const process: { env: Record<string, string | undefined> };
 
