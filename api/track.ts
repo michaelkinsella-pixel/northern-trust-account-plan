@@ -6,7 +6,7 @@ import { sessionKey } from "../lib/session.js";
 
 const TTL_SEC = 60 * 60 * 24 * 90;
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -75,3 +75,5 @@ export default async function handler(request: Request): Promise<Response> {
     headers: { "content-type": "application/json; charset=utf-8" },
   });
 }
+
+export default { fetch: handler };

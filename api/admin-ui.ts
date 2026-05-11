@@ -39,7 +39,7 @@ function formatMs(ms: number): string {
   return `${(m / 60).toFixed(1)} h`;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== "GET") {
     return new Response("Method Not Allowed", { status: 405 });
   }
@@ -125,3 +125,5 @@ export default async function handler(request: Request): Promise<Response> {
 
   return new Response(html, { status: 200, headers: { "content-type": "text/html; charset=utf-8" } });
 }
+
+export default { fetch: handler };

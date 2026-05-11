@@ -9,7 +9,7 @@ declare const process: { env: Record<string, string | undefined> };
 
 const TTL_SEC = 60 * 60 * 24 * 90;
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
   }
@@ -84,3 +84,5 @@ export default async function handler(request: Request): Promise<Response> {
     },
   });
 }
+
+export default { fetch: handler };
