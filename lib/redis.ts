@@ -1,8 +1,9 @@
+import { Redis as UpstashRedis } from "@upstash/redis";
 import Redis from "ioredis";
 
 declare const process: { env: Record<string, string | undefined> };
 
-/** TCP Redis used by serverless (Redis Cloud, Vercel Redis, Upstash TCP URL, etc.) */
+/** TCP or Upstash REST (HTTP) — used by serverless for sessions and analytics */
 export type AppRedis = {
   get(key: string): Promise<string | null>;
   set(key: string, value: string, ttlSeconds: number): Promise<void>;
@@ -54,13 +55,50 @@ function resolveTcpUrl(): string | null {
   return `${scheme}://${encodeURIComponent(username)}:${encodeURIComponent(password)}@${host}:${port}`;
 }
 
-function makeWrapper(io: Redis): AppRedis {
+function makeIoWrapper(io: Redis): AppRedis {
   return {
     get: (key) => io.get(key),
     async set(key, value, ttlSeconds) {
       await io.set(key, value, "EX", ttlSeconds);
     },
     keys: (pattern) => io.keys(pattern),
+  };
+}
+
+function normalizeGetValue(v: unknown): string | null {
+  if (v === null || v === undefined) return null;
+  if (typeof v === "string") return v;
+  try {
+    return JSON.stringify(v);
+  } catch {
+    return null;
+  }
+}
+
+async function scanKeys(client: UpstashRedis, match: string): Promise<string[]> {
+  const out: string[] = [];
+  let cursor: string | number = 0;
+  for (let i = 0; i < 5000; i++) {
+    const page = await client.scan(cursor, { match });
+    const nextCursor = page[0] as string | number;
+    const batch = page[1] as string[];
+    out.push(...batch);
+    if (String(nextCursor) === "0") break;
+    cursor = nextCursor;
+  }
+  return out;
+}
+
+function makeUpstashWrapper(client: UpstashRedis): AppRedis {
+  return {
+    async get(key) {
+      const v = await client.get(key);
+      return normalizeGetValue(v);
+    },
+    async set(key, value, ttlSeconds) {
+      await client.set(key, value, { ex: ttlSeconds });
+    },
+    keys: (pattern) => scanKeys(client, pattern),
   };
 }
 
@@ -72,23 +110,35 @@ export function getRedis(): AppRedis | null {
     return g.__ntrRedisClient;
   }
 
-  const url = resolveTcpUrl();
-  if (!url) {
-    g.__ntrRedisClient = null;
-    return null;
+  const tcpUrl = resolveTcpUrl();
+  if (tcpUrl) {
+    try {
+      const io = new Redis(tcpUrl, {
+        maxRetriesPerRequest: 2,
+        connectTimeout: 15000,
+        enableOfflineQueue: false,
+      });
+      g.__ntrRedisClient = makeIoWrapper(io);
+      return g.__ntrRedisClient;
+    } catch {
+      g.__ntrRedisClient = null;
+      return null;
+    }
   }
 
-  try {
-    const io = new Redis(url, {
-      maxRetriesPerRequest: 2,
-      connectTimeout: 15000,
-      enableOfflineQueue: false,
-    });
-    const wrapped = makeWrapper(io);
-    g.__ntrRedisClient = wrapped;
-    return wrapped;
-  } catch {
-    g.__ntrRedisClient = null;
-    return null;
+  const restUrl = process.env.UPSTASH_REDIS_REST_URL?.trim();
+  const restToken = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
+  if (restUrl && restToken) {
+    try {
+      const up = new UpstashRedis({ url: restUrl, token: restToken });
+      g.__ntrRedisClient = makeUpstashWrapper(up);
+      return g.__ntrRedisClient;
+    } catch {
+      g.__ntrRedisClient = null;
+      return null;
+    }
   }
+
+  g.__ntrRedisClient = null;
+  return null;
 }

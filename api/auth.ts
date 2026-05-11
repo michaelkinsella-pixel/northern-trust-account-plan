@@ -20,7 +20,7 @@ export default async function handler(request: Request): Promise<Response> {
       JSON.stringify({
         ok: false,
         error:
-          "Redis is missing or misconfigured. Add REDIS_CONNECTION_STRING (or REDIS_URL) with a rediss://… line from Redis Cloud. If Vercel will not let you edit REDIS_URL, use REDIS_CONNECTION_STRING only.",
+          "Redis is missing or misconfigured. Either connect Upstash for Redis on Vercel (sets UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN) or set REDIS_CONNECTION_STRING / REDIS_URL to a rediss://… TCP URL from your Redis provider.",
       }),
       { status: 503, headers: { "content-type": "application/json; charset=utf-8" } },
     );
