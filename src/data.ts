@@ -448,7 +448,7 @@ export const atAGlanceNarratives: { overline: string; title: string; body: strin
   {
     overline: "Strategy",
     title: "AI is a CEO-led priority",
-    body: "CEO Michael O'Grady has publicly anchored NT's AI strategy on three pillars: hyper-personalization, AI-generated alpha, and infinite scalability — under strict governance and client confidence. Cursor is how engineering ships against that mandate, safely and faster.",
+    body: "CEO Michael O'Grady anchors NT's AI strategy on hyper-personalization, AI-generated alpha, and infinite scalability—under strict governance. Cursor is how engineering ships against that mandate.",
   },
   {
     overline: "Platform",
