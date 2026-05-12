@@ -8,6 +8,7 @@ export type AppRedis = {
   get(key: string): Promise<string | null>;
   set(key: string, value: string, ttlSeconds: number): Promise<void>;
   keys(pattern: string): Promise<string[]>;
+  del(key: string): Promise<void>;
 };
 
 /** host:port only (no scheme) — combine with REDIS_PASSWORD or REDIS_TOKEN */
@@ -67,6 +68,9 @@ function makeIoWrapper(io: InstanceType<typeof IoRedis>): AppRedis {
       await io.set(key, value, "EX", ttlSeconds);
     },
     keys: (pattern) => io.keys(pattern),
+    async del(key) {
+      await io.del(key);
+    },
   };
 }
 
@@ -104,6 +108,9 @@ function makeUpstashWrapper(client: UpstashRedis): AppRedis {
       await client.set(key, value, { ex: ttlSeconds });
     },
     keys: (pattern) => scanKeys(client, pattern),
+    async del(key) {
+      await client.del(key);
+    },
   };
 }
 
