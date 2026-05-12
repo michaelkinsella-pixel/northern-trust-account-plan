@@ -458,7 +458,7 @@ export const atAGlanceNarratives: { overline: string; title: string; body: strin
   {
     overline: "Program",
     title: "One Horizon embeds AI as an enterprise capability—not a pilot",
-    body: "Northern Trust's One Horizon AI Program embeds responsible, enterprise-scale AI to drive growth, resiliency, and productivity. With a start-up posture, NT is fundamentally transforming how the business operates and serves clients—building agentic AI systems, agent workspaces, and production ML pipelines in the cloud, along with the teams and responsible-AI governance to support development and deployment. Cursor plugs directly into that operating model on the engineering side.",
+    body: "Northern Trust's One Horizon AI Program embeds responsible, enterprise-scale AI to drive growth, resiliency, and productivity. NT is fundamentally transforming how the business operates and serves clients—building agentic AI systems, agent workspaces, and production ML pipelines in the cloud. Cursor plugs directly into that operating model on the engineering side.",
   },
   {
     overline: "Delivery",
