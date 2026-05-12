@@ -448,7 +448,7 @@ export const atAGlanceNarratives: { overline: string; title: string; body: strin
   {
     overline: "Strategy",
     title: "AI is a CEO-led priority",
-    body: "CEO Michael O'Grady has publicly anchored Northern Trust's AI strategy on three pillars: hyper-personalization of the client experience, AI-generated alpha in investment management, and infinite scalability of operations — paired with explicit emphasis on governance, resilience, and client confidence. Engineering is where those pillars become shipped software, and Cursor is how that engineering ships safely and faster.",
+    body: "CEO Michael O'Grady has publicly anchored NT's AI strategy on three pillars: hyper-personalization, AI-generated alpha, and infinite scalability — under strict governance and client confidence. Cursor is how engineering ships against that mandate, safely and faster.",
   },
   {
     overline: "Platform",
