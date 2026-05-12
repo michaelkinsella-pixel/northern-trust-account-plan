@@ -241,36 +241,52 @@ export default function App() {
         Skip to content
       </a>
 
-      {/* Top bar — Northern Trust green + white */}
+      {/* Top bar — Northern Trust green + white, single thin row */}
       <header className="sticky top-0 z-40 border-b border-white/15 bg-ntr-green text-white shadow-md shadow-ntr-green-dark/40">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-2.5 md:px-6 md:py-3">
-          <div className="flex min-w-0 flex-1 flex-col leading-tight">
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 md:text-xs">Northern Trust</span>
-            <span className="text-sm font-semibold text-white md:text-base">Account Plan · Northern Trust</span>
-          </div>
+        <div className="mx-auto flex h-12 max-w-6xl items-center gap-3 px-4 md:h-14 md:gap-5 md:px-6">
+          <a href="#hero" className="flex shrink-0 items-center gap-2 text-sm font-semibold text-white hover:text-white/90 md:text-base">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/70 md:text-xs">NT</span>
+            <span aria-hidden className="text-white/30">·</span>
+            <span className="whitespace-nowrap">Account Plan</span>
+          </a>
           <nav
             aria-label="Page sections"
-            className="order-last flex w-full gap-0.5 overflow-x-auto lg:order-none lg:w-auto lg:max-w-none lg:flex-1 lg:justify-center lg:overflow-visible"
+            className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto md:flex"
           >
             {navItems.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
-                className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-xs font-medium text-white/80 hover:bg-white/10 hover:text-white md:text-sm"
+                className="whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-medium text-white/80 transition hover:bg-white/10 hover:text-white md:text-sm"
               >
                 {n.label}
               </a>
             ))}
           </nav>
-          <div className="flex shrink-0 items-center">
+          <div className="ml-auto flex shrink-0 items-center md:ml-0">
             <a
               href="#ask"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-ntr-green shadow-md transition hover:bg-ntr-green-soft md:text-sm"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-bold text-ntr-green shadow-md transition hover:bg-ntr-green-soft md:px-4 md:py-2 md:text-sm"
             >
               Start the trial conversation <span aria-hidden>→</span>
             </a>
           </div>
         </div>
+        {/* Below-md: thin nav row */}
+        <nav
+          aria-label="Page sections (mobile)"
+          className="flex gap-0.5 overflow-x-auto border-t border-white/10 bg-ntr-green-dark/30 px-3 py-1.5 md:hidden"
+        >
+          {navItems.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              className="whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-medium text-white/80 hover:bg-white/10 hover:text-white"
+            >
+              {n.label}
+            </a>
+          ))}
+        </nav>
       </header>
 
       <section
