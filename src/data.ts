@@ -456,9 +456,9 @@ export const atAGlanceNarratives: { overline: string; title: string; body: strin
     body: "The internal AI platform supports broad automation across high-volume workflows. The next step is wiring trusted AI assistants into SDLC paths so teams scale without shadow tools or inconsistent review evidence.",
   },
   {
-    overline: "Signals",
-    title: "Job postings show AI coding is already operationalized",
-    body: "GitHub Copilot appears in engineering roles; Microsoft Copilot is referenced broadly; specialist roles cite Claude and multi-agent intelligence. The organization is past “whether to use AI in code” and into “how to govern and measure it.”",
+    overline: "Program",
+    title: "One Horizon embeds AI as an enterprise capability—not a pilot",
+    body: "Northern Trust's One Horizon AI Program embeds responsible, enterprise-scale AI to drive growth, resiliency, and productivity. With a start-up posture, NT is fundamentally transforming how the business operates and serves clients—building agentic AI systems, agent workspaces, and production ML pipelines in the cloud, along with the teams and responsible-AI governance to support development and deployment. Cursor plugs directly into that operating model on the engineering side.",
   },
   {
     overline: "Delivery",
