@@ -1,4 +1,5 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { initAnalytics } from "./analytics";
 import {
   atAGlanceNarratives,
   cursorPillars,
@@ -231,6 +232,10 @@ export default function App() {
     () => initiatives.find((x) => x.id === activeId) ?? initiatives[0]!,
     [activeId],
   );
+
+  useEffect(() => {
+    return initAnalytics();
+  }, []);
 
   return (
     <div className="min-h-screen bg-ntr-canvas text-ntr-ink">

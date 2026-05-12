@@ -1,5 +1,5 @@
 const VISIBILITY = 0.5;
-const FLUSH_MS = 20_000;
+const FLUSH_MS = 10_000;
 
 type SectionState = {
   visible: boolean;
@@ -7,18 +7,20 @@ type SectionState = {
   pendingMs: number;
 };
 
+let started = false;
 const states = new Map<string, SectionState>();
 
 function getSections(): HTMLElement[] {
   return Array.from(document.querySelectorAll<HTMLElement>("[data-analytics-section]"));
 }
 
-function flush() {
+function flush(): void {
   const deltas: Record<string, number> = {};
+  const now = performance.now();
   for (const [id, st] of states) {
     if (st.visible && st.enteredAt !== null) {
-      st.pendingMs += performance.now() - st.enteredAt;
-      st.enteredAt = performance.now();
+      st.pendingMs += now - st.enteredAt;
+      st.enteredAt = now;
     }
     if (st.pendingMs > 0) {
       deltas[id] = Math.round(st.pendingMs);
@@ -32,26 +34,26 @@ function flush() {
 
   if (navigator.sendBeacon) {
     const blob = new Blob([body], { type: "application/json" });
-    navigator.sendBeacon("/api/track", blob);
-  } else {
-    void fetch("/api/track", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body,
-      credentials: "same-origin",
-      keepalive: true,
-    });
+    const ok = navigator.sendBeacon("/api/track", blob);
+    if (ok) return;
   }
+  void fetch("/api/track", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body,
+    credentials: "same-origin",
+    keepalive: true,
+  }).catch(() => {});
 }
 
-export function initAnalytics() {
+function setup(): () => void {
   const els = getSections();
-  if (!els.length) return;
-
   for (const el of els) {
     const id = el.dataset.analyticsSection;
     if (!id) continue;
-    states.set(id, { visible: false, enteredAt: null, pendingMs: 0 });
+    if (!states.has(id)) {
+      states.set(id, { visible: false, enteredAt: null, pendingMs: 0 });
+    }
   }
 
   const obs = new IntersectionObserver(
@@ -79,13 +81,49 @@ export function initAnalytics() {
     { threshold: [0, 0.25, 0.5, 0.75, 1] },
   );
 
-  for (const el of els) {
-    obs.observe(el);
+  for (const el of els) obs.observe(el);
+
+  const interval = window.setInterval(flush, FLUSH_MS);
+  const onVisibility = () => {
+    if (document.visibilityState === "hidden") flush();
+  };
+  const onPageHide = () => flush();
+  document.addEventListener("visibilitychange", onVisibility);
+  window.addEventListener("pagehide", onPageHide);
+
+  return () => {
+    obs.disconnect();
+    window.clearInterval(interval);
+    document.removeEventListener("visibilitychange", onVisibility);
+    window.removeEventListener("pagehide", onPageHide);
+    flush();
+  };
+}
+
+export function initAnalytics(): () => void {
+  // Guard against React StrictMode double-mount calling this twice.
+  if (started) return () => {};
+  started = true;
+
+  let teardown: (() => void) | null = null;
+
+  if (getSections().length > 0) {
+    teardown = setup();
+  } else {
+    // Sections not yet in the DOM (React hasn't committed). Wait and retry.
+    const mo = new MutationObserver(() => {
+      if (getSections().length > 0) {
+        mo.disconnect();
+        teardown = setup();
+      }
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    teardown = () => mo.disconnect();
   }
 
-  window.setInterval(flush, FLUSH_MS);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") flush();
-  });
-  window.addEventListener("pagehide", flush);
+  return () => {
+    started = false;
+    if (teardown) teardown();
+    teardown = null;
+  };
 }
