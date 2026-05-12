@@ -362,7 +362,7 @@ export default function App() {
           <SectionHeading
             eyebrow="Snapshot"
             title="Northern Trust at a glance"
-            description="Strategic context for where AI meets software delivery—grounded in public disclosures and hiring signals, not internally confirmed facts."
+            description="Strategic context for where AI meets software delivery—grounded in public disclosures and hiring signals."
           />
           <div className="grid gap-5 md:grid-cols-2">
             {atAGlanceNarratives.map((card) => (
