@@ -649,12 +649,19 @@ export default function App() {
                     {theAskCta.tel ? (
                       <a
                         href={theAskCta.tel}
-                        className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-amber-300 px-5 py-3 text-base font-bold text-ntr-green shadow-lg transition hover:bg-amber-200"
+                        aria-label={
+                          theAskCta.telDisplay
+                            ? `${theAskCta.label} — ${theAskCta.telDisplay}`
+                            : theAskCta.label
+                        }
+                        className="inline-flex w-full flex-col items-center justify-center gap-1.5 rounded-full bg-amber-300 px-5 py-3 text-center text-base font-bold text-ntr-green shadow-lg transition hover:bg-amber-200"
                       >
-                        <PhoneHandsetIcon className="h-5 w-5" />
-                        {theAskCta.label}
+                        <span className="inline-flex items-center gap-2">
+                          <PhoneHandsetIcon className="h-5 w-5" />
+                          {theAskCta.label}
+                        </span>
                         {theAskCta.telDisplay ? (
-                          <span className="sr-only">
+                          <span className="text-[13px] font-semibold tracking-wide text-ntr-green/80">
                             {theAskCta.telDisplay}
                           </span>
                         ) : null}

@@ -583,6 +583,6 @@ export const theAskAccountTeamRows: { name: string; title: string; note?: string
 /** Primary CTA — set `tel` when publishing a direct line is appropriate. */
 export const theAskCta = {
   label: "Call Mike to schedule",
-  tel: "" as string,
-  telDisplay: "" as string,
+  tel: "tel:+16305333272",
+  telDisplay: "(630) 533-3272",
 };
